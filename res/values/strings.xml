@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrakApp</string>
+    <string name="serverUrl">http://192.168.1.9:8080</string>
+    <string name="userId">1</string>
+    <string name="userIdLabel">Id pracownika:</string>
+    <string name="serverUrlLabel">Adres serwera:</string>
+    <string name="cancel">Anuluj</string>
+    <string name="save">Zapisz</string>
+    <string name="settingsLabel">Ustawienia</string>
+    <string name="createShipmentLabel">Rejestruj przesyłkę</string>
+    <string name="writeTagLabel">Programuj TAG</string>
+    <string name="shipmentDeliveryLabel">Dostarczenie przesyłki</string>
+    <string name="registerLabel">Rejestruj</string>
+</resources>

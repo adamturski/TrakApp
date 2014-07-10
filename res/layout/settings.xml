@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <GridLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:layout_gravity="center" android:id="@+id/gridLayout" android:padding="5dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/serverUrlLabel"
+                  android:id="@+id/textView1" android:layout_row="0" android:layout_column="0"
+                  android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/userIdLabel"
+                  android:id="@+id/textView2" android:layout_row="1" android:layout_column="0"
+                  android:textStyle="bold"/>
+        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@string/serverUrl" android:id="@+id/serverUrlText" android:layout_row="0"
+                  android:layout_column="1" android:layout_gravity="fill_horizontal" android:inputType="textUri"/>
+        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/userId"
+                  android:id="@+id/userIdText" android:layout_row="1" android:layout_column="1"
+                  android:inputType="number"/>
+    </GridLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:padding="5dp" android:gravity="right">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:id="@+id/cancelButton" android:layout_gravity="center"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:id="@+id/saveButton" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>

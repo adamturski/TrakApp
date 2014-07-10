@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView" android:fillViewport="false"
+            android:measureAllChildren="false">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+                      android:layout_width="fill_parent" android:layout_height="wrap_content" android:padding="10dp"
+                      android:id="@+id/linearLayout">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nadawca"
+                    android:id="@+id/textView" android:layout_gravity="left|center_vertical" android:textStyle="bold"
+                    android:textSize="20dp" android:textIsSelectable="true"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderCompany" android:inputType="text" android:hint="Firma" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderName" android:inputType="text" android:hint="Imię" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderSurname" android:inputType="text" android:hint="Nazwisko" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderPhone" android:inputType="text" android:hint="Telefon" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderStreet" android:inputType="text" android:hint="Ulica" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderHouse" android:inputType="text" android:hint="Nr domu" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderFlat" android:inputType="text" android:hint="Nr mieszkania" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderPostcode" android:inputType="text" android:hint="Kod pocztowy" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderCity" android:inputType="text" android:hint="Miasto" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderState" android:inputType="text" android:hint="Województwo" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/senderCountry" android:inputType="text" android:hint="Kraj" android:text="test"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Odbiorca"
+                      android:id="@+id/textView1" android:layout_gravity="left|center_vertical" android:textStyle="bold"
+                      android:textSize="20dp" android:textIsSelectable="true"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientCompany" android:inputType="text" android:hint="Firma" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientName" android:inputType="text" android:hint="Imię" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientSurname" android:inputType="text" android:hint="Nazwisko" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientPhone" android:inputType="text" android:hint="Telefon" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientStreet" android:inputType="text" android:hint="Ulica" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientHouse" android:inputType="text" android:hint="Nr domu" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientFlat" android:inputType="text" android:hint="Nr mieszkania" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientPostcode" android:inputType="text" android:hint="Kod pocztowy" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientCity" android:inputType="text" android:hint="Miasto" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientState" android:inputType="text" android:hint="Województwo" android:text="test"/>
+            <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/recipientCountry" android:inputType="text" android:hint="Kraj" android:text="test"/>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" android:paddingTop="15dp" android:gravity="center">
+                <Button
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/registerLabel"
+                        android:id="@+id/createButton" android:layout_gravity="center_vertical"/>
+                <Button
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancel"
+                        android:id="@+id/cancelButton" android:layout_gravity="center"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
