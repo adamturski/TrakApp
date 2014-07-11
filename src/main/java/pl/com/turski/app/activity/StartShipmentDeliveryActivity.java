@@ -127,8 +127,6 @@ public class StartShipmentDeliveryActivity extends Activity {
 
         IntentFilter[] filters = new IntentFilter[1];
         String[][] techList = new String[][]{};
-
-        // Notice that this is the same filter as in our manifest.
         filters[0] = new IntentFilter();
         filters[0].addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
         filters[0].addCategory(Intent.CATEGORY_DEFAULT);
@@ -175,12 +173,10 @@ public class StartShipmentDeliveryActivity extends Activity {
                 Tag tag = tags[0];
                 Ndef ndef = Ndef.get(tag);
                 if (ndef == null) {
-                    // NDEF is not supported by this Tag.
                     return null;
                 }
 
                 NdefMessage ndefMessage = ndef.getCachedNdefMessage();
-
                 NdefRecord[] records = ndefMessage.getRecords();
                 for (NdefRecord ndefRecord : records) {
                     if (ndefRecord.getTnf() == NdefRecord.TNF_WELL_KNOWN && Arrays.equals(ndefRecord.getType(), NdefRecord.RTD_TEXT)) {
@@ -220,17 +216,8 @@ public class StartShipmentDeliveryActivity extends Activity {
         private String readText(NdefRecord record) throws UnsupportedEncodingException {
 
             byte[] payload = record.getPayload();
-
-            // Get the Text Encoding
             String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16";
-
-            // Get the Language Code
             int languageCodeLength = payload[0] & 0063;
-
-            // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-            // e.g. "en"
-
-            // Get the Text
             return new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
         }
 

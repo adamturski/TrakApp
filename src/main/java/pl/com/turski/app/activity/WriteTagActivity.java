@@ -123,7 +123,6 @@ public class WriteTagActivity extends Activity {
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 if (App.MIME_TEXT_PLAIN.equals(type)) {
                     if (writableTag(tag)) {
-                        //writeTag here
                         WriteTagResponse wr = writeTag(createMessage(), tag);
                         String message = (wr.getStatus() == 1 ? "Ok: " : "Błąd: ") + wr.getMessage();
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -151,8 +150,6 @@ public class WriteTagActivity extends Activity {
 
         byte[] payload = new byte[1 + langLength + textLength];
         payload[0] = (byte) langLength;
-
-        // copy langbytes and textbytes into payload
         System.arraycopy(langBytes, 0, payload, 1, langLength);
         System.arraycopy(textBytes, 0, payload, 1 + langLength, textLength);
 
@@ -231,8 +228,6 @@ public class WriteTagActivity extends Activity {
 
         IntentFilter[] filters = new IntentFilter[1];
         String[][] techList = new String[][]{};
-
-        // Notice that this is the same filter as in our manifest.
         filters[0] = new IntentFilter();
         filters[0].addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
         filters[0].addCategory(Intent.CATEGORY_DEFAULT);
