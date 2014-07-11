@@ -9,8 +9,11 @@
     <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/writeTagLabel"
             android:id="@+id/writeTagButton" android:layout_gravity="center"/>
     <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:text="@string/shipmentDeliveryLabel"
-            android:id="@+id/shipmentDeliveryButton" android:layout_gravity="center"/>
+                android:text="Pobierz przesyłkę"
+                android:id="@+id/startShipmentDeliveryButton" android:layout_gravity="center"/>
+    <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:text="Dostarczenie przesyłki"
+            android:id="@+id/endShipmentDeliveryButton" android:layout_gravity="center"/>
     <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/settingsLabel"
             android:id="@+id/settingsButton" android:layout_gravity="center"/>
 </LinearLayout>

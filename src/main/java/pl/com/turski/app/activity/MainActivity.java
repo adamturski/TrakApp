@@ -11,7 +11,8 @@ public class MainActivity extends Activity {
 
     Button createShipmentButton;
     Button writeTagButton;
-    Button shipmentDeliveryButton;
+    Button startShipmentDeliveryButton;
+    Button endShipmentDeliveryButton;
     Button settingsButton;
 
     @Override
@@ -36,10 +37,17 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-        shipmentDeliveryButton = (Button) findViewById(R.id.shipmentDeliveryButton);
-        shipmentDeliveryButton.setOnClickListener(new View.OnClickListener() {
+        startShipmentDeliveryButton = (Button) findViewById(R.id.startShipmentDeliveryButton);
+        startShipmentDeliveryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ShipmentDeliveryActivity.class);
+                Intent intent = new Intent(MainActivity.this, StartShipmentDeliveryActivity.class);
+                startActivity(intent);
+            }
+        });
+        endShipmentDeliveryButton = (Button) findViewById(R.id.endShipmentDeliveryButton);
+        endShipmentDeliveryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EndShipmentDeliveryActivity.class);
                 startActivity(intent);
             }
         });

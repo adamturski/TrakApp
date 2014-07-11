@@ -1,9 +1,12 @@
 package pl.com.turski.app.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,14 +16,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.appspot.trak.shipment.Shipment;
 import com.appspot.trak.shipment.model.ShipmentCreate;
-import com.appspot.trak.shipment.model.ShipmentRegisterReturnDto;
+import com.appspot.trak.shipment.model.ShipmentCreateRequest;
+import com.appspot.trak.shipment.model.ShipmentCreateResponse;
 import pl.com.turski.app.App;
+import pl.com.turski.app.SettingKey;
 import pl.com.turski.app.util.Util;
 import pl.com.turski.trak.app.R;
 
 import java.io.IOException;
 
 public class CreateShipmentActivity extends Activity {
+
+    private SharedPreferences settings;
 
     EditText senderCompany;
     EditText senderName;
@@ -54,6 +61,7 @@ public class CreateShipmentActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_shipment);
         initView();
+        settings = this.getSharedPreferences("pl.com.turski.trak.app", Context.MODE_PRIVATE);
     }
 
     private void initView() {
@@ -172,10 +180,27 @@ public class CreateShipmentActivity extends Activity {
             try {
                 Shipment shipmentService = App.getShipmentService();
                 ShipmentCreate shipmentCreate = shipmentCreates[0];
-                ShipmentRegisterReturnDto shipmentRegisterReturnDto = shipmentService.create(shipmentCreate).execute();
-                return shipmentRegisterReturnDto.getShipmentId();
+                String userId = settings.getString(SettingKey.USER_ID.getKey(), SettingKey.USER_ID.getDefValue());
+                ShipmentCreateRequest shipmentCreateRequest = new ShipmentCreateRequest();
+                shipmentCreateRequest.setShipmentCreate(shipmentCreate);
+                shipmentCreateRequest.setUserId(Long.parseLong(userId));
+                ShipmentCreateResponse shipmentCreateResponse = shipmentService.create(shipmentCreateRequest).execute();
+                return shipmentCreateResponse.getShipmentId();
             } catch (IOException e) {
                 Log.e(App.TAG, "IOException occured during creating shipment", e);
+                CreateShipmentActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateShipmentActivity.this);
+                        builder.setMessage("Wystąpił błąd podczas rejestracji przesyłki")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builder.create().show();
+                    }
+                });
                 return null;
             }
         }
@@ -183,66 +208,16 @@ public class CreateShipmentActivity extends Activity {
         @Override
         protected void onPostExecute(Long shipmentId) {
             progressDialog.dismiss();
-
-            clearForm();
             showWriteTagActivity(shipmentId);
         }
     }
 
-    private void clearForm() {
-        senderCompany.setText("");
-        senderCompany.setError(null);
-        senderName.setText("");
-        senderName.setError(null);
-        senderSurname.setText("");
-        senderSurname.setError(null);
-        senderPhone.setText("");
-        senderPhone.setError(null);
-        senderStreet.setText("");
-        senderStreet.setError(null);
-        senderHouse.setText("");
-        senderHouse.setError(null);
-        senderFlat.setText("");
-        senderFlat.setError(null);
-        senderCity.setText("");
-        senderCity.setError(null);
-        senderPostcode.setText("");
-        senderPostcode.setError(null);
-        senderState.setText("");
-        senderState.setError(null);
-        senderCountry.setText("");
-        senderCountry.setError(null);
-
-        recipientCompany.setText("");
-        recipientCompany.setError(null);
-        recipientName.setText("");
-        recipientName.setError(null);
-        recipientSurname.setText("");
-        recipientSurname.setError(null);
-        recipientPhone.setText("");
-        recipientPhone.setError(null);
-        recipientStreet.setText("");
-        recipientStreet.setError(null);
-        recipientHouse.setText("");
-        recipientHouse.setError(null);
-        recipientFlat.setText("");
-        recipientFlat.setError(null);
-        recipientCity.setText("");
-        recipientCity.setError(null);
-        recipientPostcode.setText("");
-        recipientPostcode.setError(null);
-        recipientState.setText("");
-        recipientState.setError(null);
-        recipientCountry.setText("");
-        recipientCountry.setError(null);
-    }
-
     private void showWriteTagActivity(Long shipmentId) {
         if (shipmentId == null) {
-            Toast.makeText(this, "Rejestracja nieudana. Spróbuj ponownie.", 5000).show();
             return;
         }
 
+        Toast.makeText(this, "Rejestracja powiodła się. Numer przesyłki: " + shipmentId, 5000).show();
         Intent intent = new Intent(this, WriteTagActivity.class);
         Bundle bundle = new Bundle();
         bundle.putLong("shipmentId", shipmentId);

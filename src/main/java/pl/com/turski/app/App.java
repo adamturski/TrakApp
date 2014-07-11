@@ -12,7 +12,9 @@ import com.google.api.client.json.gson.GsonFactory;
  */
 public class App extends Application {
 
+    public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String TAG = "TRAK_APP";
+
     private static Context context;
 
     @Override
