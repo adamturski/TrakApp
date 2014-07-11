@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import com.appspot.trak.shipment.Shipment;
 import com.appspot.trak.shipment.model.EndShipmentRequest;
 import pl.com.turski.app.App;
@@ -104,6 +105,7 @@ public class EndShipmentDeliveryActivity extends Activity {
 
                 } else {
                     Log.d(App.TAG, "Niewspierany typ tagu: " + type);
+                    Toast.makeText(this, "Niewspierany typ tagu: " + type, Toast.LENGTH_SHORT).show();
                 }
                 approachTagDialog.dismiss();
             }
@@ -214,14 +216,6 @@ public class EndShipmentDeliveryActivity extends Activity {
             }
         }
 
-        @Override
-        protected void onPostExecute(Boolean result) {
-            progressDialog.dismiss();
-            if (result) {
-                EndShipmentDeliveryActivity.this.finish();
-            }
-        }
-
         private String readText(NdefRecord record) throws UnsupportedEncodingException {
 
             byte[] payload = record.getPayload();
@@ -237,6 +231,14 @@ public class EndShipmentDeliveryActivity extends Activity {
 
             // Get the Text
             return new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            progressDialog.dismiss();
+            if (result) {
+                EndShipmentDeliveryActivity.this.finish();
+            }
         }
     }
 }

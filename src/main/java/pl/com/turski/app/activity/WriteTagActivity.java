@@ -69,6 +69,22 @@ public class WriteTagActivity extends Activity {
         }
     }
 
+    private void checkNfc() {
+        NfcManager nfcManager = (NfcManager) getSystemService(NFC_SERVICE);
+        nfcAdapter = nfcManager.getDefaultAdapter();
+        if (nfcAdapter == null || !nfcAdapter.isEnabled()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Włącz obsługę NFC i spróbuj ponownie")
+                    .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.create().show();
+            finish();
+        }
+    }
+
     private void saveButtonAction() {
         if (shipmentId == null) {
             int valid = Util.validateEmptyEditText(shipmentIdText);
@@ -98,22 +114,6 @@ public class WriteTagActivity extends Activity {
         approachTagDialog.show();
     }
 
-    private void checkNfc() {
-        NfcManager nfcManager = (NfcManager) getSystemService(NFC_SERVICE);
-        nfcAdapter = nfcManager.getDefaultAdapter();
-        if (nfcAdapter == null || !nfcAdapter.isEnabled()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Włącz obsługę NFC i spróbuj ponownie")
-                    .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                        }
-                    });
-            builder.create().show();
-            finish();
-        }
-    }
-
     @Override
     protected void onNewIntent(Intent intent) {
         String action = intent.getAction();
@@ -135,6 +135,7 @@ public class WriteTagActivity extends Activity {
                     }
                 } else {
                     Log.d(App.TAG, "Niewspierany typ tagu: " + type);
+                    Toast.makeText(this, "Niewspierany typ tagu: " + type, Toast.LENGTH_SHORT).show();
                 }
                 approachTagDialog.dismiss();
             }

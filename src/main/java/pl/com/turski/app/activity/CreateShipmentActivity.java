@@ -158,6 +158,20 @@ public class CreateShipmentActivity extends Activity {
         return valid == 0;
     }
 
+    private void showWriteTagActivity(Long shipmentId) {
+        if (shipmentId == null) {
+            return;
+        }
+
+        Toast.makeText(this, "Rejestracja powiodła się. Numer przesyłki: " + shipmentId, 5000).show();
+        Intent intent = new Intent(this, WriteTagActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putLong("shipmentId", shipmentId);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
+    }
+
     private class CreateShipmentTask extends AsyncTask<ShipmentCreate, Void, Long> {
 
         private Context context;
@@ -210,19 +224,5 @@ public class CreateShipmentActivity extends Activity {
             progressDialog.dismiss();
             showWriteTagActivity(shipmentId);
         }
-    }
-
-    private void showWriteTagActivity(Long shipmentId) {
-        if (shipmentId == null) {
-            return;
-        }
-
-        Toast.makeText(this, "Rejestracja powiodła się. Numer przesyłki: " + shipmentId, 5000).show();
-        Intent intent = new Intent(this, WriteTagActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putLong("shipmentId", shipmentId);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        finish();
     }
 }
