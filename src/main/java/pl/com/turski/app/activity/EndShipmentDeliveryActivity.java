@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.appspot.trak.shipment.Shipment;
 import com.appspot.trak.shipment.model.EndShipmentRequest;
 import pl.com.turski.app.App;
-import pl.com.turski.app.SettingKey;
+import pl.com.turski.app.settings.SettingKey;
 import pl.com.turski.trak.app.R;
 
 import java.io.IOException;

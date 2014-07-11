@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.appspot.trak.shipment.Shipment;
 import com.google.api.client.http.apache.ApacheHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
+import pl.com.turski.app.settings.SettingKey;
 
 /**
  * User: Adam

@@ -19,7 +19,7 @@ import com.appspot.trak.shipment.model.ShipmentCreate;
 import com.appspot.trak.shipment.model.ShipmentCreateRequest;
 import com.appspot.trak.shipment.model.ShipmentCreateResponse;
 import pl.com.turski.app.App;
-import pl.com.turski.app.SettingKey;
+import pl.com.turski.app.settings.SettingKey;
 import pl.com.turski.app.util.Util;
 import pl.com.turski.trak.app.R;
 

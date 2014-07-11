@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import pl.com.turski.app.SettingKey;
+import pl.com.turski.app.settings.SettingKey;
 import pl.com.turski.trak.app.R;
 
 public class SettingsActivity extends Activity {

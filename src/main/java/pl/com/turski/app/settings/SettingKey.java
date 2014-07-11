@@ -1,4 +1,4 @@
-package pl.com.turski.app;
+package pl.com.turski.app.settings;
 
 /**
  * User: Adam
