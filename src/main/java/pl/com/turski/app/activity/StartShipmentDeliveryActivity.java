@@ -66,10 +66,10 @@ public class StartShipmentDeliveryActivity extends Activity {
                     .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
+                            finish();
                         }
                     });
             builder.create().show();
-            finish();
         }
     }
 
@@ -116,7 +116,9 @@ public class StartShipmentDeliveryActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        setupForegroundDispatch(this, nfcAdapter);
+        if (nfcAdapter != null) {
+            setupForegroundDispatch(this, nfcAdapter);
+        }
     }
 
     public static void setupForegroundDispatch(final Activity activity, NfcAdapter adapter) {
@@ -141,7 +143,9 @@ public class StartShipmentDeliveryActivity extends Activity {
 
     @Override
     protected void onPause() {
-        stopForegroundDispatch(this, nfcAdapter);
+        if (nfcAdapter != null) {
+            stopForegroundDispatch(this, nfcAdapter);
+        }
         super.onPause();
     }
 
